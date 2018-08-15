@@ -1,4 +1,7 @@
+Related to project: https://github.com/shollingsworth/piClicker
+
 # Prerequisites
+
 ## AWS Profile
 Setup a profile in ~/.aws/credentials
 
