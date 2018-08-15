@@ -21,7 +21,7 @@ See: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-ei
 
 
 -----------------------
-# Setup/Teardown of bot environment -
+# Setup & Teardown of the bot environment
 ## Setting up DB / VPC
 Run the command: (this will likely take ~20 minutes to complete, mostly due to RDS setup)
 ```
@@ -30,12 +30,7 @@ Run the command: (this will likely take ~20 minutes to complete, mostly due to R
 
 for more flags issue `./env_setup/setup_lambda_rds.py -h`
 
-##########
-
------------------------
-##########
-
-## Tearing down
+## Tearing it down
 1.) Delete contents of created bucket
 2.) Go to cloudformation, delete stack with the label previously assigned in the setup_lambda_rds command
 
@@ -45,13 +40,18 @@ for more flags issue `./env_setup/setup_lambda_rds.py -h`
 
 
 -----------------------
-# edit ./env_setup/dev.json - connection type / and make a random CTF token
+# Editing environment settings
+using example in `./env_setup/dev.json`
+
 ## set connection_type to "mysql_rds"
 * `"connection_type" : "mysql_rds"`
+
 ## generate random token
 * `"ctftoken" : "Q4stYvFUQJV0bewIvcuwILD2X0j12IVPbg7dHzsy"`
+
 ## set empty events line, see Zappa documentation on the format of the events array
 * `"events": []`
+
 ## set team_id
 * `"team_id": "TXXXXXX"`
     * See https://stackoverflow.com/a/44883343/7049363 on how to grab this from the web UI
@@ -63,22 +63,22 @@ for more flags issue `./env_setup/setup_lambda_rds.py -h`
 edit `botconfig.py` and set `ENABLE_CALLBACK` to `True`
 
 ## fill out credentials in ./env_setup/dev.json
-1.) "slack_client_id"
-2.) "slack_client_secret"
-3.) "slack_signing_secret"
-4.) "slack_verification_token"
+* "slack_client_id"
+* "slack_client_secret"
+* "slack_signing_secret"
+* "slack_verification_token"
 * ![Get App Credential Values](./graphics/Selection_017.png)
 
 ## create exception logging channel and webhook
-* Create channel #lambda_bot_exceptions
-* setup webhook for exceptions, and enter into `dev.json`
-    * "exception_hook_url"
+* Create channel `#lambda_bot_exceptions`
+* setup webhook for exceptions
+    * enter value for key "exception_hook\_url" in `./env_setup/dev.json`
     * ![Webhook Graphic](./graphics/Selection_018.png)
 
 ## deploy slack bot lambda
-* insert gpg key fingerprint (no spaces) into ./env_setup/gpg.recipients
+* insert gpg key fingerprint (no spaces) into `./env_setup/gpg.recipients`
 * run `./env_setup/genzappa_settings.py`
-    * this will generate the zappa_config.json and encrypt the config's secrets for storage in source control (if desired)
+    * this will generate the `zappa_config.json` and encrypt the config's secrets for storage in source control (if desired)
 * run `./setup_virtualenv.sh` and `source ./venv/bin/active` to prep environment
 * zappa deploy, make note of the URL for next steps
     * ![Zappa Deploy Graphic](./graphics/Selection_020.png)
@@ -87,7 +87,7 @@ edit `botconfig.py` and set `ENABLE_CALLBACK` to `True`
 * ![Enable Bot Account](./graphics/Selection_022.png)
 
 ## set callback url
-* enter callback url and save i.e. `https://xxxxxxx.execute-api.us-east-2.amazonaws.com/dev/callback`
+* enter callback url with ext `/callback` i.e. `https://xxxxxxx.execute-api.us-east-2.amazonaws.com/dev/callback`
 * ![Set Callback URL](./graphics/Selection_023.png)
 
 ## set permissions
@@ -96,7 +96,7 @@ edit `botconfig.py` and set `ENABLE_CALLBACK` to `True`
 ## set api token usage to the two EIP's defined previously
 * ![Set API EIP's](./graphics/Selection_025.png)
 
-## install to workspace with callback button
+## install to workspace by clicking the "Add to Slack" button
 * Add to workspace
     * ![Click Add to Slack for workspace](./graphics/Selection_027.png)
 * Set Default bot channel
@@ -109,12 +109,12 @@ edit `botconfig.py` and set `ENABLE_CALLBACK` to `True`
 * move the file to ./env\_setup/authed-data.json, and edit out all tables other than `authed_data`
 
 ## enable form / menu interactive components
-* enter base url for request component url i.e. `https://xxxxxxx.execute-api.us-east-2.amazonaws.com/dev/form`
-* enter base url for options load url i.e. `https://xxxxxxx.execute-api.us-east-2.amazonaws.com/dev/menu`
+* enter base url for request component url `/form` i.e. `https://xxxxxxx.execute-api.us-east-2.amazonaws.com/dev/form`
+* enter base url for options load url `/menu` i.e. `https://xxxxxxx.execute-api.us-east-2.amazonaws.com/dev/menu`
 * ![Set Interactive Component URLs](./graphics/Selection_019.png)
 
 ## create "slash" command
-* enter base url with extension "/dev" i.e. `https://xxxxxxx.execute-api.us-east-2.amazonaws.com/dev/cmd`
+* enter base url with extension `/cmd` i.e. `https://xxxxxxx.execute-api.us-east-2.amazonaws.com/dev/cmd`
 * ![Set Slash Command URL's](./graphics/Selection_021.png)
 
 -----------------------
