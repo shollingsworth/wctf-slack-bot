@@ -1,0 +1,14 @@
+[flake8]
+ignore =
+    # spaces equal
+    E221,
+    # spaces prefix
+    E251,
+    # :  dict spaces
+    E203,
+    # complexity
+    C901,
+    # module import
+    E402
+max-complexity = 10
+max-line-length = 120

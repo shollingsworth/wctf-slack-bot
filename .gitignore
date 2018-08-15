@@ -1,0 +1,5 @@
+env_setup/*.json
+zappa_settings.json
+venv/
+*.pyc
+*.swp
