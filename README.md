@@ -52,6 +52,9 @@ using example in `./env_setup/dev.json`
 ## set empty events line, see Zappa documentation on the format of the events array
 * `"events": []`
 
+## set the default log level - can be any log level logging.setLevel(*) understands
+* `"log_level": 'DEBUG'`
+
 ## set team_id
 * `"team_id": "TXXXXXX"`
     * See https://stackoverflow.com/a/44883343/7049363 on how to grab this from the web UI
