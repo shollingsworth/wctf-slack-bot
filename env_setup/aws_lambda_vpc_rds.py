@@ -208,7 +208,7 @@ PrivateRoute2Default = template.add_resource(Route(
     "PrivateRoute2Default",
     DestinationCidrBlock="0.0.0.0/0",
     RouteTableId=Ref("PrivateRoute2Table"),
-    NatGatewayId=Ref("NatGateway1"),
+    NatGatewayId=Ref("NatGateway2"),
     DependsOn="NatGateway2",
 ))
 
