@@ -1,10 +1,10 @@
 click==6.6
 flask>=0.12.3
 itsdangerous==0.24
-Jinja2==2.8
+Jinja2
 MarkupSafe==0.23
-pyaml==16.9.0
-PyYAML==3.12
+pyaml
+PyYAML
 six==1.11.0
 slackclient==1.0.2
 websocket-client==0.37.0
@@ -20,7 +20,7 @@ slacker==0.9.65
 Flask-Caching==1.4.0
 pyboto3
 jsonpickle==0.9.6
-sqlalchemy==1.2.10
+sqlalchemy
 MySQL-python==1.2.5
 sqlalchemy-json==0.2.1
 requests-toolbelt==0.8.0
